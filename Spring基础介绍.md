@@ -42,4 +42,25 @@ servlet模块：包含MVC和REST web service实现的web应用程序
 该模块提供了与AspectJ(一个功能强大并且成熟的面向切面编程的框架)的集成，扩展了Java语言，定义了AOP语法(俗称接入点语法)，持有一个专门的编译器来生成遵守Java字节码规范的Class文件，使用字节码生成技术来实现代理。
 ~~~
 
-* 
+* Instrumentation模块
+
+~~~wiki
+该模块是spring对其他容器的集成及对类加载器的扩展实现
+~~~
+
+* Messaging模块
+
+~~~wiki
+该模块是从spring集成项目中抽象出来的，类似于基于注解的spring mvc编程模块，包含一系列消息与方法的映射注解
+~~~
+
+* Core Container模块
+
+~~~wiki
+该模块是spring的根基，由Beans，Core，context，spEL四个子模块组成
+beans模块和core模块提供框架的基础部分，包含IOC(控制反转)和DI(依赖注入)功能，使用beanfactory基本概念来实现容器对bean的管理
+是所有spring应用的核心，sping本身的运行都是由这种bean的核心模型进行加载和执行的，是spring其他模块的核心支撑，是运行的根本保证。
+context模块建立在beans和core模块的坚实基础上，并且集成了beans模块的特征，增加了对国际化的支持，ApplicationContext接口是context模块的焦点，spring-context-support模块支持集成第三方常用库到spring应用的上下文中，例如缓存(EhCache，Guava)，调度框架(Quartz)及模板引擎(freemarker velocity)等
+SPEL模块提供了强大的表达式语言来查询和操作运行时对象
+~~~
+
