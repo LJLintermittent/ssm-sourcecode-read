@@ -33,6 +33,13 @@ servlet模块：包含MVC和REST web service实现的web应用程序
 * AOP模块
 
 ~~~wiki
-该模块是spring的代理模块
+该模块是spring的代理模块，也是spring的核心模块，它巧妙的利用了JDK的动态代理和cglib动态代理面向过程编程，来实现业务的零入侵，低耦合的效果。为了确保与其他AOP框架的互用性，SpringAOP模块支持基于AOP联盟定义的API，也就是Aspect模块，与IOC模块相辅相成。
 ~~~
 
+* Aspects模块
+
+~~~wiki
+该模块提供了与AspectJ(一个功能强大并且成熟的面向切面编程的框架)的集成，扩展了Java语言，定义了AOP语法(俗称接入点语法)，持有一个专门的编译器来生成遵守Java字节码规范的Class文件，使用字节码生成技术来实现代理。
+~~~
+
+* 
