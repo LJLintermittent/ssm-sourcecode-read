@@ -64,3 +64,16 @@ context模块建立在beans和core模块的坚实基础上，并且集成了bean
 SPEL模块提供了强大的表达式语言来查询和操作运行时对象
 ~~~
 
+* Test模块
+
+~~~wiki
+该模块支持通过JUnit或TestNG来进行单元测试和集成测试，并且提供了Mock object（模仿对象）方式来进行测试
+~~~
+
+### spring的领域模型
+
+1.容器领域模型，（context模型）也叫上下文模型，是spring的掌控域，对spring核心领域模型进行生命周期管理，也可以将其称为spring的服务域，因此它将为整个应用服务
+
+2.核心领域模型，（Bean模型）体现了spring的核心理念，“一切皆bean，bean即一切”，bean是应用运行时可执行的最小函数单元，可以是一个属性单元，也可以是java中的一个函数对象。
+
+3.代理领域模型，spring代理的执行依赖于bean模型，但是spring代理的生成，执行及选择都依赖于spring自身定义的Advisor模型，只有符合Advisor模型的定义，才能生成sping代理。
