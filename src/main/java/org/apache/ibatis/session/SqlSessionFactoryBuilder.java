@@ -87,6 +87,8 @@ public class SqlSessionFactoryBuilder {
     public SqlSessionFactory build(InputStream inputStream, String environment, Properties properties) {
         try {
             XMLConfigBuilder parser = new XMLConfigBuilder(inputStream, environment, properties);
+            //parser.parse()返回一个Configuration
+            //build(parser.parse())然后有调用一个build方法，这个重载build的入参是Configuration
             return build(parser.parse());
         } catch (Exception e) {
             throw ExceptionFactory.wrapException("Error building SqlSession.", e);
