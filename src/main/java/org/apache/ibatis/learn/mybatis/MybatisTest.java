@@ -50,6 +50,12 @@ public class MybatisTest {
         Environment environment = new Environment("development", transactionFactory, dataSource);
         Configuration configuration = new Configuration(environment);
         configuration.addMapper(BlogMapper.class);
+        /*
+            这个建造者模式方法执行完毕后，至此mybatis的初始化阶段完成，在初始化阶段，
+            mybatis主要做了以下工作:
+            1.根据配置文件的位置，获取输入流
+            2.从配置文件的根节点开始
+         */
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(configuration);
         SqlSession session = sqlSessionFactory.openSession();
         BlogMapper blogMapper = session.getMapper(BlogMapper.class);
