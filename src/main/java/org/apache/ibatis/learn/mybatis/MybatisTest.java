@@ -1,6 +1,7 @@
 package org.apache.ibatis.learn.mybatis;
 
 import com.alibaba.druid.pool.DruidDataSource;
+import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.mapping.Environment;
 import org.apache.ibatis.session.Configuration;
 import org.apache.ibatis.session.SqlSession;
@@ -10,6 +11,8 @@ import org.apache.ibatis.transaction.TransactionFactory;
 import org.apache.ibatis.transaction.jdbc.JdbcTransactionFactory;
 
 import javax.sql.DataSource;
+import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * Description:
@@ -20,7 +23,7 @@ import javax.sql.DataSource;
  * @version 1.0
  */
 public class MybatisTest {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         /**
          * orm对象关系映射框架，在我的理解中主要就是完成三项工作，分别是三个映射：
@@ -33,7 +36,15 @@ public class MybatisTest {
          * 2.将数据库操作节点和映射接口中的抽象方法进行绑定，在抽象方法被调用的时候执行数据库操作
          * 3.将方法的入参转换为sql语句的占位符参数
          * 4.将sql语句的返回结果封装成对象
+         *
+         * Resources.getResourceAsStream(null);
+         * 这里面借助了类加载器，来负责加载类的对象，给定类的二进制名，类加载器会尝试定位和生成该名称的文件
+         * 因此，类加载器具有读取外部资源的能力，这里正是利用了类加载器的这种能力
+         * 可以说io包中的resource类和ClassLoaderWrapper负责mybatis对外部文件的读写
          */
+        String resource = "mybatis-config.xml";
+        InputStream inputStream = Resources.getResourceAsStream(resource);
+
         DataSource dataSource = getDataSource();
         TransactionFactory transactionFactory = new JdbcTransactionFactory();
         Environment environment = new Environment("development", transactionFactory, dataSource);
