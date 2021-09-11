@@ -155,7 +155,7 @@ public class DefaultSqlSession implements SqlSession {
   @Override
   public <E> List<E> selectList(String statement, Object parameter, RowBounds rowBounds) {
     try {
-      // 获取查询语句
+      // 获取查询语句 ,每个MappedStatement对象对应了我们设置的一个数据库操作节点
       MappedStatement ms = configuration.getMappedStatement(statement);
       // 交由执行器进行查询
       return executor.query(ms, wrapCollection(parameter), rowBounds, Executor.NO_RESULT_HANDLER);

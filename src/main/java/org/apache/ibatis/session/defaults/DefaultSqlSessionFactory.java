@@ -44,6 +44,7 @@ public class DefaultSqlSessionFactory implements SqlSessionFactory {
 
   @Override
   public SqlSession openSession() {
+    //创建SqlSession的核心方法，这个方法最终返回一个DefaultSqlSession
     return openSessionFromDataSource(configuration.getDefaultExecutorType(), null, false);
   }
 
